@@ -1,0 +1,6 @@
+<h1>Blog posts</h1>
+<% @creatures.each do |c| %>
+  <h2><%= c.name %></h2>
+  <p><%= c.description %></p>
+  <%= link_to "Save Creature", creatures_path(@creatures), :class =>"btn btn-default" %>
+<% end %>
