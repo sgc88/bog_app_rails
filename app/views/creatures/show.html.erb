@@ -1,0 +1,8 @@
+<h2><%= @creature.name %></h2>
+<h2><%= @creature.description %></h2>
+<hr>
+<%= link_to "Edit", edit_creature_path(@creature), :class => "btn btn-default" %>
+<%= link_to "Delete", creature_path(@creature),
+          method: :delete,
+          data: {confirm: "Are you sure?"},
+          :class => "btn btn-danger" %>

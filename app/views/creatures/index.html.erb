@@ -2,5 +2,5 @@
 <% @creatures.each do |c| %>
   <h2><%= c.name %></h2>
   <p><%= c.description %></p>
-  <%= link_to "Save Creature", creatures_path(@creatures), :class =>"btn btn-default" %>
+  <%= link_to "Save Creature", creature_path(c), :class =>"btn btn-default" %>
 <% end %>

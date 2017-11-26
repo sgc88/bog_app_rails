@@ -3,6 +3,7 @@ class CreaturesController < ApplicationController
   def index
     @creatures = Creature.all
   end
+
   def new
     @creatures = Creature.new
   end
@@ -20,14 +21,30 @@ class CreaturesController < ApplicationController
   def show
     #get the creature id from the url params
     creature_id = params[:id]
-    @creature = Creature.find_by_id(creature_id)
+    @creature = Creature.find(creature_id)
+  end
+
+  def edit
+    @creature = Creature.find(params[:id])
   end
 
   def update
-    @creatures = Creature.find(params[:id])
-    if(@creature.update(creature_params))
-      redirect_to @creature
-    else
-      render "edit"
-    end
+    creature_id = params[:id]
+    creature = Creature.find(creature_id)
+    #whitelist params and save them to the variable
+    creature_params = params.require(:creature).permit(:name, :description)
+    #update the creature
+    creature.update_attributes(creature_params)
+    #redirect_to show page for the updated creature
+    redirect_to creature_path(creature)
+  end
+
+  # def update
+  #   @creature = Creature.find(params[:id])
+  #   if(@creature.update(creature_params_id))
+  #     redirect_to @creature
+  #   else
+  #     render "edit"
+  #   end
+  # end
 end
